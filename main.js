@@ -52,9 +52,8 @@ class Personaje {
     this.height = 1000;
     this.velocidad = 10;
     this.saltando = false;
-
     this.element = document.createElement("img");
-    this.element.src = "https://i.ibb.co/XqnWNRs/Flaco.png"
+    this.element.src = "https://i.ibb.co/gLtpq69d/Flaco.png"
     this.element.classList.add("personaje");
     this.element.style.position = "absolute";
     this.element.style.left = `${this.x}px`;
@@ -123,8 +122,11 @@ class Moneda {
     this.y = Math.random() * 250 + 50;
     this.width = 30;
     this.height = 30;
-    this.element = document.createElement("div");
-    this.element.classList.add("moneda");
+    this.element = document.createElement("img");
+    this.element.src = "https://img.icons8.com/?size=200&id=uf15GPjIxkW2&format=png";
+     this.element.style.position = "absolute";
+     this.element.style.left = `${this.x}px`;
+    this.element.style.top = `${this.y}px`;
 
     this.actualizarPosicion();
   }
