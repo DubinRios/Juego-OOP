@@ -15,7 +15,7 @@ class Game {
     this.container.appendChild(this.personaje.element);
 
     for (let i = 0; i < 5; i++) {
-      const moneda = new Moneda();
+      const moneda = new Moneda(imagenesMonedas[i]);
       this.monedas.push(moneda);
       this.container.appendChild(moneda.element);
     }
@@ -33,6 +33,9 @@ class Game {
           this.container.removeChild(moneda.element);
           this.monedas.splice(index, 1);
           this.actualizarPuntuacion(10);
+          if (this.monedas.length === 0) {
+            this.personaje.cambiarEstadoAGordo();
+          }
         }
       });
     }, 100);
@@ -114,16 +117,24 @@ class Personaje {
       this.y + this.height > objeto.y
     );
   }
+// agregué un estado de flaco a gordo con una alerta cuando termine de comer//
+
+  cambiarEstadoAGordo() {
+    this.estado = "gordo";
+    this.element.src = "https://i.ibb.co/3YyyVMxD/Gordito.png";
+    alert("¡Felicidades! te has comido todo y ahora eres Gordito.")
+  } 
 }
 
+
 class Moneda {
-  constructor() {
+  constructor(imagenSrc) {
     this.x = Math.random() * 700 + 50;
     this.y = Math.random() * 250 + 50;
     this.width = 30;
     this.height = 30;
     this.element = document.createElement("img");
-    this.element.src = "https://img.icons8.com/?size=200&id=uf15GPjIxkW2&format=png";
+    this.element.src = imagenSrc;
      this.element.style.position = "absolute";
      this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
@@ -136,5 +147,13 @@ class Moneda {
     this.element.style.top = `${this.y}px`;
   }
 }
+
+const imagenesMonedas = [
+  "https://img.icons8.com/?size=200&id=uf15GPjIxkW2&format=png",
+  "https://img.icons8.com/?size=200&id=RTFOTVPzEAwT&format=png",
+  "https://img.icons8.com/?size=200&id=IrLeaYkDsDWy&format=png",
+  "https://img.icons8.com/?size=200&id=nTahoEqeZiES&format=png",
+  "https://img.icons8.com/?size=200&id=6az0FPCNHm1Y&format=png",
+];
 
 const juego = new Game();
