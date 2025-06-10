@@ -17,6 +17,7 @@ body {
   margin: 20px auto;
   background-image: url(./Imagenes/Fondo\ restaurant\ oscuro.png);
   background-size: cover;
+  border: rgb(185, 239, 249) solid 8px;
   overflow: hidden;
   border-radius: 30px;
   
@@ -43,6 +44,30 @@ body {
   text-align: center;
   margin: 10px 0;
 }
+
+/*Para el responsive, use media queries */
+@media (max-width: 600px) {
+  #game-container {
+    width: 90vw; /* 90% del ancho de la ventana */
+    height: 70vh; /* 70% del alto de la ventana */
+  }
+
+  .personaje {
+    width: 15vw; /* 15% del ancho de la ventana */
+    height: 20vw; /* 20% del alto de la ventana */
+  }
+
+  .moneda {
+    width: 5vw; /* 5% del ancho de la ventana */
+    height: 5vw; /* 5% del alto de la ventana */
+  }
+
+  #puntos, #vidas {
+    font-size: 3vw; /* 3% del ancho de la ventana */
+  }
+}
+/*vw (viewport width) y vh (viewport height) son unidades 
+que representan el ancho y alto del viewport del navegador.*/
 
 #Fondo general {
     justify-content: center;
