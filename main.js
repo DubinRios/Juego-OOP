@@ -51,8 +51,8 @@ class Personaje {
   constructor() {
     this.x = 80;
     this.y = 230;
-    this.width = 300;
-    this.height = 1000;
+    this.width = 100;
+    this.height = 150;
     this.velocidad = 10;
     this.saltando = false;
     this.element = document.createElement("img");
@@ -66,10 +66,14 @@ class Personaje {
   }
 
   mover(evento) {
+    const contenedor = document.getElementById("game-container");
+         const limiteDerecho = contenedor.offsetWidth - this.width; // Agregada variable para aplicar limites a lo ancho.
     if (evento.key === "ArrowRight") {
       this.x += this.velocidad;
+      if (this.x > limiteDerecho) this.x = limiteDerecho; // Para que choque al llegar al limite derecho.
     } else if (evento.key === "ArrowLeft") {
       this.x -= this.velocidad;
+      if (this.x < 0) this.x = 0; // Para que detenga su movimiento al llegar al limite izquierdo.
     } else if (evento.key === "ArrowUp" && !this.saltando) {
       this.saltar();
     }
@@ -122,7 +126,7 @@ class Personaje {
   cambiarEstadoAGordo() {
     this.estado = "gordo";
     this.element.src = "https://i.ibb.co/3YyyVMxD/Gordito.png";
-    alert("¡Felicidades! te has comido todo y ahora eres Gordito.")
+    
   } 
 }
 
@@ -131,13 +135,16 @@ class Moneda {
   constructor(imagenSrc) {
     this.x = Math.random() * 700 + 50;
     this.y = Math.random() * 250 + 50;
-    this.width = 30;
-    this.height = 30;
+    this.width = 60;
+    this.height = 60;
     this.element = document.createElement("img");
     this.element.src = imagenSrc;
      this.element.style.position = "absolute";
      this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
+
+    this.element.style.width = `${this.width}px`; // Establece el ancho
+    this.element.style.height = `${this.height}px`; // Establece el alto
 
     this.actualizarPosicion();
   }
