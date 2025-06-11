@@ -6,6 +6,12 @@ class Game {
     this.monedas = [];
     this.puntuacion = 0;
 
+    //Agregar musica de fondo//
+    this.backgroundMusic = new Audio(`./Sonidos/FONDOMUSICAL.mp3`);
+    this.backgroundMusic.loop = true;
+    this.backgroundMusic.volume = 0.2;  
+    this.backgroundMusic.play();
+    
     this.crearEscenario();
     this.agregarEventos();
   }
@@ -27,12 +33,14 @@ class Game {
   }
 
   checkColisiones() {
+    const sonidoMordida = document.getElementById("Mordida");
     setInterval(() => {
       this.monedas.forEach((moneda, index) => {
         if (this.personaje.colisionaCon(moneda)) {
           this.container.removeChild(moneda.element);
           this.monedas.splice(index, 1);
           this.actualizarPuntuacion(10);
+          sonidoMordida.play();
           if (this.monedas.length === 0) {
             this.personaje.cambiarEstadoAGordo();
           }
@@ -50,7 +58,7 @@ class Game {
 class Personaje {
   constructor() {
     this.x = 80;
-    this.y = 230;
+    this.y = 180;
     this.width = 100;
     this.height = 150;
     this.velocidad = 10;
@@ -83,7 +91,7 @@ class Personaje {
 
   saltar() {
     this.saltando = true;
-    let alturaMaxima = this.y - 200;
+    let alturaMaxima = this.y - 180;
 
     const salto = setInterval(() => {
       if (this.y > alturaMaxima) {
@@ -98,7 +106,7 @@ class Personaje {
 
   caer() {
     const gravedad = setInterval(() => {
-      if (this.y < 250) {
+      if (this.y < 180) {
         this.y += 10;
       } else {
         clearInterval(gravedad);
@@ -121,7 +129,7 @@ class Personaje {
       this.y + this.height > objeto.y
     );
   }
-// agregué un estado de flaco a gordo con una alerta cuando termine de comer//
+// agregué un estado de flaco a gordo //
 
   cambiarEstadoAGordo() {
     this.estado = "gordo";
@@ -162,5 +170,27 @@ const imagenesMonedas = [
   "https://img.icons8.com/?size=200&id=nTahoEqeZiES&format=png",
   "https://img.icons8.com/?size=200&id=6az0FPCNHm1Y&format=png",
 ];
+
+//Musica de fondoo y Boton//
+const musica = document.getElementById("musica-fondo"); // Creo una variable llamando al ID del HTML.
+const botonMusica = document.getElementById("boton"); // Lo mismo pero con el ID del botón.
+
+// Aquí creo el evento para que al hacer click se reproduzca la música.
+document.addEventListener("click", () => {
+  if (musica.paused) {
+    musica.play();
+  }
+}, { once: true });
+
+// Y aquí creo el evento para pausar o reproducir la música.
+botonMusica.addEventListener("click", () => {
+  if (musica.paused) {
+    musica.play();
+    botonMusica.textContent = "Música";
+  } else {
+    musica.pause();
+    botonMusica.textContent = "Mute";
+  }
+});
 
 const juego = new Game();

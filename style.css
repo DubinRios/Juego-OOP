@@ -10,6 +10,24 @@ body {
   height: 100vh;
   flex-direction: column;
 }
+
+#boton {
+  background-color: rgb(156, 240, 255);
+  border-radius: 10px;
+  border: none;
+  width: 80px;
+  height: 25px;
+  color: crimson;  
+  box-shadow: 2px 2px 4px rgba(155, 7, 7, 0.5);
+}
+
+#titulo {
+  color: rgb(91, 10, 167);
+  font-family: "Gorditas", sans-serif;
+  font-size: 50px;
+  text-decoration: underline;
+}
+
 #game-container {
   position: relative;
   width: 800px;
@@ -43,32 +61,14 @@ body {
   font-size: 20px;
   text-align: center;
   margin: 10px 0;
+  font-family: "Gorditas", sans-serif;
+  color: rgb(91, 10, 167);
 }
-
-/*Para el responsive, use media queries */
-@media (max-width: 600px) {
-  #game-container {
-    width: 90vw; /* 90% del ancho de la ventana */
-    height: 70vh; /* 70% del alto de la ventana */
-  }
-
-  .personaje {
-    width: 15vw; /* 15% del ancho de la ventana */
-    height: 20vw; /* 20% del alto de la ventana */
-  }
-
-  .moneda {
-    width: 5vw; /* 5% del ancho de la ventana */
-    height: 5vw; /* 5% del alto de la ventana */
-  }
-
-  #puntos, #vidas {
-    font-size: 3vw; /* 3% del ancho de la ventana */
-  }
-}
-/*vw (viewport width) y vh (viewport height) son unidades 
-que representan el ancho y alto del viewport del navegador.*/
 
 #Fondo general {
     justify-content: center;
 }
+
+
+
+
