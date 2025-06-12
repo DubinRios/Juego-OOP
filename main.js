@@ -9,8 +9,10 @@ class Game {
     //Agregar musica de fondo//
     this.backgroundMusic = new Audio(`./Sonidos/FONDOMUSICAL.mp3`);
     this.backgroundMusic.loop = true;
-    this.backgroundMusic.volume = 0.2;  
+    this.backgroundMusic.volume = 0.1;  
     this.backgroundMusic.play();
+
+    this.aplauso = new Audio(`./Sonidos/aplausos.mp3`);
     
     this.crearEscenario();
     this.agregarEventos();
@@ -102,6 +104,8 @@ class Personaje {
       }
       this.actualizarPosicion();
     }, 20);
+    const sonidoSalto = document.getElementById("salto");
+    sonidoSalto.play();
   }
 
   caer() {
@@ -134,8 +138,10 @@ class Personaje {
   cambiarEstadoAGordo() {
     this.estado = "gordo";
     this.element.src = "https://i.ibb.co/3YyyVMxD/Gordito.png";
-    
+    alert("Que ricooo!! Ahora eres Gordito, dale aceptar y verás");
+    this.aplauso.play();
   } 
+  
 }
 
 
@@ -162,6 +168,8 @@ class Moneda {
     this.element.style.top = `${this.y}px`;
   }
 }
+
+
 
 const imagenesMonedas = [
   "https://img.icons8.com/?size=200&id=uf15GPjIxkW2&format=png",
