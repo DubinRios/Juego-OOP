@@ -21,11 +21,18 @@ body {
   box-shadow: 2px 2px 4px rgba(155, 7, 7, 0.5);
 }
 
+.contenedor-boton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 #titulo {
   color: rgb(91, 10, 167);
   font-family: "Gorditas", sans-serif;
   font-size: 50px;
   text-decoration: underline;
+  text-align: center;
 }
 
 #game-container {
@@ -69,6 +76,46 @@ body {
     justify-content: center;
 }
 
+.inicio {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+
+.blur {
+  filter: blur(5px);
+  z-index: 1;
+
+}
+.contenido-inicio {
+  background: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+#empezar-juego {
+  background-color: rgb (156, 240, 255);
+  border-radius: 10px;
+  border: none;
+  width: 150px;
+  height: 40px;
+  color: crimson;
+  box-shadow: 2px 2px 4px rgba(155, 7, 7, 0.5);
+  font-size: 16px;
+  cursor: pointer;
+}
+
+#empezar-juego:hover {
+  background-color: rgb(100, 200, 220);
+}
 
 
 

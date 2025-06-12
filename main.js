@@ -1,3 +1,18 @@
+document.addEventListener("DOMContentLoaded", () => {
+  const inicio = document.getElementById("inicio");
+  const empezarJuego = document.getElementById("empezar-juego");
+  const efecto = document.getElementById("efecto")
+  efecto.classList.add("blur");
+
+
+  // Ocultar la pantalla de inicio y comenzar el juego
+  empezarJuego.addEventListener("click", () => {
+    inicio.style.display = "none";
+    efecto.classList.remove("blur");
+    new Game();
+  });
+});
+
 class Game {
   constructor() {
     this.container = document.getElementById("game-container");
@@ -6,14 +21,8 @@ class Game {
     this.monedas = [];
     this.puntuacion = 0;
 
-    //Agregar musica de fondo//
-    this.backgroundMusic = new Audio(`./Sonidos/FONDOMUSICAL.mp3`);
-    this.backgroundMusic.loop = true;
-    this.backgroundMusic.volume = 0.1;  
-    this.backgroundMusic.play();
+  
 
-    this.aplauso = new Audio(`./Sonidos/aplausos.mp3`);
-    
     this.crearEscenario();
     this.agregarEventos();
   }
@@ -60,7 +69,7 @@ class Game {
 class Personaje {
   constructor() {
     this.x = 80;
-    this.y = 180;
+    this.y = 250;
     this.width = 100;
     this.height = 150;
     this.velocidad = 10;
@@ -71,6 +80,7 @@ class Personaje {
     this.element.style.position = "absolute";
     this.element.style.left = `${this.x}px`;
     this.element.style.top = `${this.y}px`;
+    this.aplauso = new Audio(`./Sonidos/aplausos.mp3`);
 
     this.actualizarPosicion();
   }
@@ -110,7 +120,7 @@ class Personaje {
 
   caer() {
     const gravedad = setInterval(() => {
-      if (this.y < 180) {
+      if (this.y < 220) {
         this.y += 10;
       } else {
         clearInterval(gravedad);
@@ -182,6 +192,8 @@ const imagenesMonedas = [
 //Musica de fondoo y Boton//
 const musica = document.getElementById("musica-fondo"); // Creo una variable llamando al ID del HTML.
 const botonMusica = document.getElementById("boton"); // Lo mismo pero con el ID del botón.
+musica.volume = 0.15; // Volumen bajo
+musica.loop = true;
 
 // Aquí creo el evento para que al hacer click se reproduzca la música.
 document.addEventListener("click", () => {
@@ -201,4 +213,3 @@ botonMusica.addEventListener("click", () => {
   }
 });
 
-const juego = new Game();
